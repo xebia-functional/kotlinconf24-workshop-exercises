@@ -21,6 +21,7 @@ dependencies {
   implementation("io.arrow-kt:arrow-fx-coroutines:$arrowVersion")
   implementation("io.arrow-kt:arrow-optics:$arrowVersion")
   ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
+  implementation("io.github.nomisrev:kotlinx-serialization-jsonpath:1.0.0")
   testImplementation(kotlin("test"))
   testImplementation("net.jqwik:jqwik:1.6.5")
 }
