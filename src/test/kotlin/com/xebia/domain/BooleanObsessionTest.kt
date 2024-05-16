@@ -1,6 +1,6 @@
 package com.xebia.domain
 
-import com.xebia.mapFromChosen
+import com.xebia.com.xebia.errors.exercise1.mapFromChosen
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

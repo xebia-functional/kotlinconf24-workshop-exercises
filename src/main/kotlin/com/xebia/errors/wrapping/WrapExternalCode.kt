@@ -15,8 +15,17 @@ import kotlin.jvm.Throws
  * and turn [IOException] into a typed error.
  * As you would've done with checked exceptions in Java.
  *
- * Implement [safeTask] both for Either, and Raise,
+ * 1. Implement [safeTask] for Either,
  * by capturing [IOException] and turning it into a typed error.
+ *
+ * 2. Implement [safeTask] using Raise,
+ * by capturing [IOException] and turning it into a typed error.
+ *
+ * Additional exercise:
+ * There are many correct solution to these exercises,
+ * but remember there are also some gotchas!
+ *
+ * How many correct answers, incorrect can you find?
  */
 class JavaSDK {
     @Throws(IOException::class)
@@ -24,6 +33,10 @@ class JavaSDK {
         println("Doing some I/O. Beep Beep.")
 }
 
+/**
+ * Wrap the [JavaSDK.safeTask] function,
+ * and turn its [IOException] into a typed error.
+ */
 fun JavaSDK.safeTask(): Either<IOException, Unit> =
     Either.catchOrThrow<IOException, Unit> { task() }
 //     try {

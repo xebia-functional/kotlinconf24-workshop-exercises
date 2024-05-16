@@ -6,15 +6,15 @@ import com.xebia.com.xebia.domain.ConcertState
 import com.xebia.com.xebia.domain.action
 import net.jqwik.api.*
 import net.jqwik.api.constraints.IntRange
-import org.junit.jupiter.api.Assertions.assertTrue
+import kotlin.test.assertTrue
 
 class PatternMatchingTest {
   @Property
   fun testSolution(@ForAll @IntRange(min = 1, max = 100) maximumCapacity: Int) {
     var concert = Concert(maximumCapacity)
 
-    for (i in 1 .. maximumCapacity) {
-      concert = Concert(maximumCapacity).action(ConcertAction.SellTickets(1))
+    for (i in 0..<maximumCapacity) {
+      concert = concert.action(ConcertAction.SellTickets(1))
       assertTrue(concert.state is ConcertState.TicketsOnSale)
     }
 

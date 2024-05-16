@@ -1,4 +1,4 @@
-package com.xebia
+package com.xebia.com.xebia.errors.exercise1
 
 fun <K, V> Iterable<V>.mapFromChosen(
   predicate: (V) -> Boolean,

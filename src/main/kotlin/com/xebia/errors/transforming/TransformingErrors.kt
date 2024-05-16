@@ -16,8 +16,15 @@ import arrow.core.raise.either
  * We also get a transformation from [MyError.toOtherError],
  * which we'll need to use to transform from [MyError] to [OtherError].
  *
- * Implement `either`, and `dsl` functions,
- * such that they transform `left` and `error` error from [MyError] to [OtherError].
+ * 1. Implement [either]
+ * 2. Implement [raise]
+ *
+ * Additional exercise:
+ * [Either], and [Raise] allow achieving the same behavior,
+ * and they work seamlessly together.
+ *
+ * Try to solve 1 using the solution used in 2,
+ * and vice-versa.
  */
 data class MyError(val message: String)
 data class OtherError(val message: String)
@@ -30,13 +37,21 @@ fun error(): Nothing =
 fun left(): Either<MyError, Nothing> =
     either { error() }
 
+/**
+ * Transform the Either.Left[MyError] from [left],
+ * using [MyError.toOtherError].
+ */
 fun either(): Either<OtherError, String> =
     // TODO("Transform left() to OtherError")
     left()
         .mapLeft(MyError::toOtherError)
 
+/**
+ * Call [error] inside of this function,
+ * using [MyError.toOtherError].
+ */
 context(Raise<OtherError>)
-fun dsl(): String =
+fun raise(): String =
     // TODO("Transform error() to OtherError")
     withError(MyError::toOtherError) {
         error()
