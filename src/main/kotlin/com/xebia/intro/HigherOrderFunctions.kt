@@ -150,8 +150,8 @@ fun main() {
     val royaltiesInOneRun = aggregateRoyaltiesInOneIteration(songsLibrary, playStats, selectedGenre, selectedYear)
 
     val currencyFormatter = NumberFormat.getCurrencyInstance()
-    currencyFormatter.setMaximumFractionDigits(0);
-    currencyFormatter.currency = Currency.getInstance("EUR");
+    currencyFormatter.setMaximumFractionDigits(0)
+    currencyFormatter.currency = Currency.getInstance("EUR")
 
     assert(royalty == royaltiesByUsingHigherOrderFunctions)
     assert(royalty == royaltiesInOneRun)

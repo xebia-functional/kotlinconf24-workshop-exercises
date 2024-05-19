@@ -17,6 +17,7 @@ val arrowVersion = "2.0.0-alpha.1"
 
 dependencies {
   implementation("io.arrow-kt:arrow-core:$arrowVersion")
+  implementation("io.arrow-kt:arrow-functions:$arrowVersion")
   implementation("io.arrow-kt:arrow-fx-stm:$arrowVersion")
   implementation("io.arrow-kt:arrow-fx-coroutines:$arrowVersion")
   implementation("io.arrow-kt:arrow-optics:$arrowVersion")
