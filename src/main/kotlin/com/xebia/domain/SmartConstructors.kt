@@ -31,16 +31,6 @@ value class TicketPrice private constructor (val value: Double) {
     private const val MINIMUM_PRICE: Double = 35.0
     private const val MAXIMUM_PRICE: Double = 125.0
 
-    operator fun invoke(price: Double): TicketPrice? {
-      return if (price in MINIMUM_PRICE..MAXIMUM_PRICE) {
-          if (price % 5 == 0.0) {
-            TicketPrice(price)
-          } else {
-            null
-          }
-      } else {
-        null
-      }
-    }
+    operator fun invoke(price: Double): TicketPrice? = TODO()
   }
 }

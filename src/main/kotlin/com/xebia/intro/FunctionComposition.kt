@@ -1,7 +1,5 @@
 package com.xebia.com.xebia.intro
 
-import arrow.core.andThen
-import arrow.core.compose
 import java.text.NumberFormat
 import java.time.LocalDate
 import java.util.*
@@ -30,11 +28,9 @@ fun estimateRoyalties(fee: Double): Map<Int, Double> =
         it * fee
     }
 
-val generateRoyaltiesEstimationForSongWithAndThen: (Song) -> Map<Int, Double> =
-    ::getSongArtist andThen ::getFeePerPlay andThen ::estimateRoyalties
+val generateRoyaltiesEstimationForSongUsingAndThen: (Song) -> Map<Int, Double> = TODO()
 
-val generateRoyaltiesEstimationForSongWithCompose: (Song) -> Map<Int, Double> =
-    ::estimateRoyalties compose ::getFeePerPlay compose ::getSongArtist
+val generateRoyaltiesEstimationForSongUsingCompose: (Song) -> Map<Int, Double> = TODO()
 
 fun main() {
     val artist = Artist(name = "Foo Fighters", feePerSongPlayed = 3.50)
@@ -45,8 +41,8 @@ fun main() {
         releaseDate = LocalDate.of(2020, 11, 7)
     )
 
-    val estimationWithAndThen = generateRoyaltiesEstimationForSongWithAndThen(song)
-    val estimationWithCompose = generateRoyaltiesEstimationForSongWithCompose(song)
+    val estimationWithAndThen = generateRoyaltiesEstimationForSongUsingAndThen(song)
+    val estimationWithCompose = generateRoyaltiesEstimationForSongUsingCompose(song)
     assert(estimationWithAndThen == estimationWithCompose)
 
     val currencyFormatter = NumberFormat.getCurrencyInstance()

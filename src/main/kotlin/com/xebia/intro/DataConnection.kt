@@ -25,12 +25,15 @@ fun <T> DataConnection<T>.populateData(data: Map<Long, T>) {
     datasource += data
 }
 
+/**
+ * In this exercise, we want to ensure that, after creating the connection to the data source, we want to populate
+ * it with the initial data. To do so, we can use the function [populateData]. Consider resolve this exercise by
+ * using to different scope functions.
+ */
 fun main() {
     val data = mapOf(Pair(1L, Data(1L, "a")), Pair(2L, Data(2L, "b")))
 
-    val dataConnection =
-        InMemoryDataConnection().also { it.populateData(data) }
+    val dataConnectionWithPopulatedDataAlternative1 = TODO()
 
-    val alternativeDataConnectionWithApply =
-        InMemoryDataConnection().apply { populateData(data) }
+    val dataConnectionWithPopulatedDataAlternative2 = TODO()
 }

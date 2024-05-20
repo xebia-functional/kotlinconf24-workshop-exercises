@@ -13,58 +13,19 @@ sealed interface ConcertManagementState {
     fun processAction(action: ConcertManagementAction): ConcertManagementState
 
     data class ConcertAnnounced(val releaseDate: LocalDate) : ConcertManagementState {
-        override fun processAction(action: ConcertManagementAction): ConcertManagementState {
-            return when (action) {
-                is ConcertManagementAction.SellTickets -> this // No effect on the state
-                is ConcertManagementAction.AnnounceNewDate -> this // No effect on the state
-                is ConcertManagementAction.OpenGeneralTicketSales -> TicketsOnSale(action.generalTicketSales)
-                is ConcertManagementAction.OpenPresales -> PresalesOpen(action.presalesTicketsCount)
-            }
-        }
+        override fun processAction(action: ConcertManagementAction): ConcertManagementState = TODO()
     }
 
     data class PresalesOpen(val availableTickets: Int) : ConcertManagementState {
-        override fun processAction(action: ConcertManagementAction): ConcertManagementState {
-            return when (action) {
-                is ConcertManagementAction.AnnounceNewDate -> this // No effect on the state
-                is ConcertManagementAction.OpenGeneralTicketSales ->
-                    TicketsOnSale(availableTickets + action.generalTicketSales)
-
-                is ConcertManagementAction.OpenPresales -> this // No effect on the state
-                is ConcertManagementAction.SellTickets ->
-                    if (action.ticketsCount <= availableTickets)
-                        PresalesOpen(availableTickets - action.ticketsCount)
-                    else this // There are not enough tickets to complete the request
-            }
-        }
+        override fun processAction(action: ConcertManagementAction): ConcertManagementState = TODO()
     }
 
     data class TicketsOnSale(val availableTickets: Int) : ConcertManagementState {
-        override fun processAction(action: ConcertManagementAction): ConcertManagementState {
-            return when (action) {
-                is ConcertManagementAction.AnnounceNewDate -> this // No effect on the state
-                is ConcertManagementAction.OpenGeneralTicketSales -> this // No effect on the state
-                is ConcertManagementAction.OpenPresales -> this // No effect on the state
-                is ConcertManagementAction.SellTickets ->
-                    if (action.ticketsCount < availableTickets)
-                        TicketsOnSale(availableTickets - action.ticketsCount)
-                    else if (action.ticketsCount == availableTickets)
-                        SoldOut
-                    else this // There are not enough tickets to complete the request
-            }
-        }
+        override fun processAction(action: ConcertManagementAction): ConcertManagementState = TODO()
     }
 
     data object SoldOut : ConcertManagementState {
-        override fun processAction(action: ConcertManagementAction): ConcertManagementState {
-            return when (action) {
-                is ConcertManagementAction.AnnounceNewDate -> ConcertAnnounced(action.concertDate)
-                is ConcertManagementAction.OpenGeneralTicketSales -> this // No effect on the state
-                is ConcertManagementAction.OpenPresales -> this // No effect on the state
-                is ConcertManagementAction.SellTickets -> this // No effect on the state
-            }
-        }
-
+        override fun processAction(action: ConcertManagementAction): ConcertManagementState = TODO()
     }
 }
 
