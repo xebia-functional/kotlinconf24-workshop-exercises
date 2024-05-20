@@ -1,6 +1,6 @@
 package com.xebia.errors
 
-import com.xebia.mapFromChosen
+import com.xebia.com.xebia.errors.exercise1.mapFromChosen
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -11,7 +11,7 @@ class NestedNullabilityTest {
     val elements = listOf(3, null, 4)
     val result = elements.mapFromChosen({ true }) { "$it" }
     assertEquals(result.size, elements.size)
-    assertEquals(elements, result.values)
+    assertEquals(elements.toList(), result.values.toList())
   }
 
   @Test
@@ -19,6 +19,6 @@ class NestedNullabilityTest {
     val elements = listOf(3, null, 4)
     val result = elements.mapFromChosen({ it != null })  { "$it" }
     assertEquals(2, result.size)
-    assertTrue(elements.filterNotNull() == result.values)
+    assertEquals(elements.filterNotNull(), result.values.toList())
   }
 }

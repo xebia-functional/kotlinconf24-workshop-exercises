@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.optics
+package com.xebia.com.xebia.optics.exercise4
 
 import arrow.core.none
 import arrow.optics.Every
@@ -24,5 +24,5 @@ fun Team.addPoints(x: Int): Team =
 fun Team.addPoint(key: Int, x: Int): Team =
     Team.players.at(At.map(), key).some.points.modify(this) { it + x }
 
-fun Team.removePlayer(key: Int, x: Int): Team =
+fun Team.removePlayer(key: Int): Team =
     Team.players.at(At.map(), key).set(this, none())

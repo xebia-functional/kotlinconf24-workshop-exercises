@@ -29,7 +29,6 @@ data class Concert(
   constructor(maximumCapacity: Int): this(maximumCapacity, ConcertState.TicketsOnSale(0))
 }
 
-// TODO implement function
 fun Concert.action(action: ConcertAction): Concert =
   when (action) {
     is ConcertAction.NewDateAvailable -> copy(state = ConcertState.TicketsOnSale(0))
