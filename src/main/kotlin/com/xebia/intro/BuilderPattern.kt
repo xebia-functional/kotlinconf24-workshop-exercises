@@ -1,7 +1,6 @@
 package com.xebia.com.xebia.intro
 
 import arrow.core.NonEmptyList
-import arrow.core.nonEmptyListOf
 import arrow.core.raise.Raise
 import arrow.core.raise.either
 import arrow.core.raise.ensure
@@ -27,10 +26,10 @@ value class FullName(val value: String) {
 }
 
 context(Raise<String>)
-fun validateDate(date: LocalDate?): LocalDate {
-    ensure(date != null) { "The birth date is missing" }
-    ensure(Period.between(date, LocalDate.now()).years >= 18) { "The person is under 18" }
-    return date
+fun LocalDate?.validateDate(): LocalDate {
+    ensure(this != null) { "The birthdate is missing" }
+    ensure(Period.between(this, LocalDate.now()).years >= 18) { "The person is under 18" }
+    return this
 }
 
 data class Person(val fullName: FullName, val email: String, val age: Int) {
@@ -43,8 +42,8 @@ data class Person(val fullName: FullName, val email: String, val age: Int) {
         context(Raise<NonEmptyList<String>>)
         fun build(): Person {
             zipOrAccumulate(
-                { FullName.build(firstName, lastName) },
-                { validateDate(birthDate) },
+                { withNel { FullName.build(firstName, lastName) } },
+                { birthDate.validateDate() },
                 { ensureNotNull(email) { raise("The email is missing") } }
             ) { fullName, date, validEmail ->
                 val age = Period.between(date, LocalDate.now()).years
@@ -78,8 +77,9 @@ fun main() {
         person {
             firstName = "John"
             email = "john.doe@example.com"
+            birthDate = LocalDate.of(2010, 2, 15)
         }
     }
 
-    println(invalid) // Either.Left(NonEmptyList(The last name is missing, The birth date is missing, The birth date is missing))
+    println(invalid) // Either.Left(NonEmptyList(The last name is missing, The person is under 18))
 }
