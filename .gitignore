@@ -135,6 +135,29 @@ gradle-app.setting
 # Eclipse Gradle plugin generated files
 # Eclipse Core
 .project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+.kotlin/
+
+### IntelliJ ###
+.idea/
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
@@ -143,6 +166,4 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/kotlin,gradle,intellij+all
-
-.kotlin/
 .jqwik-database
