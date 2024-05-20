@@ -3,11 +3,7 @@ package com.xebia.com.xebia.intro
 import arrow.core.NonEmptyList
 import arrow.core.raise.Raise
 import arrow.core.raise.either
-import arrow.core.raise.ensure
-import arrow.core.raise.ensureNotNull
-import arrow.core.raise.zipOrAccumulate
 import java.time.LocalDate
-import java.time.Period
 
 @DslMarker
 annotation class PeopleDsl
@@ -16,21 +12,12 @@ annotation class PeopleDsl
 value class FullName(val value: String) {
     companion object {
         context(Raise<NonEmptyList<String>>)
-        fun build(firstName: String?, lastName: String?): FullName {
-            return zipOrAccumulate(
-                { ensure(!firstName.isNullOrBlank()) { "The first name is missing" } },
-                { ensure(!lastName.isNullOrBlank()) { "The last name is missing" } },
-            ) { _, _ -> FullName("$firstName $lastName") }
-        }
+        fun build(firstName: String?, lastName: String?): FullName = TODO()
     }
 }
 
 context(Raise<String>)
-fun validateDate(date: LocalDate?): LocalDate {
-    ensure(date != null) { "The birthdate is missing" }
-    ensure(Period.between(date, LocalDate.now()).years >= 18) { "The person is under 18" }
-    return date
-}
+fun LocalDate?.validateDate(): LocalDate = TODO()
 
 data class Person(val fullName: FullName, val email: String, val age: Int) {
     class Builder {
@@ -40,17 +27,7 @@ data class Person(val fullName: FullName, val email: String, val age: Int) {
         var birthDate: LocalDate? = null
 
         context(Raise<NonEmptyList<String>>)
-        fun build(): Person {
-            zipOrAccumulate(
-                { withNel { FullName.build(firstName, lastName) } },
-                { validateDate(birthDate) },
-                { ensureNotNull(email) { raise("The email is missing") } }
-            ) { fullName, date, validEmail ->
-                val age = Period.between(date, LocalDate.now()).years
-
-                return Person(fullName, validEmail, age)
-            }
-        }
+        fun build(): Person = TODO()
     }
 }
 
