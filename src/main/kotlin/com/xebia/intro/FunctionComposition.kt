@@ -1,5 +1,7 @@
 package com.xebia.com.xebia.intro
 
+import arrow.core.andThen
+import arrow.core.compose
 import java.text.NumberFormat
 import java.time.LocalDate
 import java.util.*
@@ -28,8 +30,31 @@ fun estimateRoyalties(fee: Double): Map<Int, Double> =
         it * fee
     }
 
+/**
+ * Using Kotlin Standard library, we could implement this composed functions by using
+ * two different approaches:
+ * 1. Chaining all the functions in one step
+ * 2. Executing the functions in several steps and storing intermediate results in values
+ */
+fun generateRoyaltiesEstimationForSong(song: Song): Map<Int, Double> {
+    // Approach 1:
+    estimateRoyalties(getFeePerPlay(getSongArtist(song)))
+
+    // Approach 2:
+    val artist = getSongArtist(song)
+    val feePerPlay = getFeePerPlay(artist)
+    return estimateRoyalties(feePerPlay)
+}
+
+/**
+ * Solve the exercise by using the [andThen] function provided by the Arrow Core Functions module
+ */
 val generateRoyaltiesEstimationForSongUsingAndThen: (Song) -> Map<Int, Double> = TODO()
 
+/**
+ * In this case, you should use the [compose] function. The implementation will be slightly
+ * different than the one used in the function above
+ */
 val generateRoyaltiesEstimationForSongUsingCompose: (Song) -> Map<Int, Double> = TODO()
 
 fun main() {
@@ -41,16 +66,16 @@ fun main() {
         releaseDate = LocalDate.of(2020, 11, 7)
     )
 
-    val estimationWithAndThen = generateRoyaltiesEstimationForSongUsingAndThen(song)
-    val estimationWithCompose = generateRoyaltiesEstimationForSongUsingCompose(song)
-    assert(estimationWithAndThen == estimationWithCompose)
+    val royaltiesEstimationUsingAndThen = generateRoyaltiesEstimationForSongUsingAndThen(song)
+    val royaltiesEstimationUsingCompose = generateRoyaltiesEstimationForSongUsingCompose(song)
+    assert(royaltiesEstimationUsingAndThen == royaltiesEstimationUsingCompose)
 
     val currencyFormatter = NumberFormat.getCurrencyInstance()
     currencyFormatter.setMaximumFractionDigits(0)
     currencyFormatter.currency = Currency.getInstance("EUR")
 
     println("# plays -> Royalties to pay")
-    estimationWithAndThen.forEach { (plays, royalty) ->
+    royaltiesEstimationUsingAndThen.forEach { (plays, royalty) ->
         println("$plays -> ${currencyFormatter.format(royalty)}")
     }
 }
