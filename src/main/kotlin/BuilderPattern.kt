@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.intro
+package com.xebia
 
 import arrow.core.NonEmptyList
 import arrow.core.raise.Raise
