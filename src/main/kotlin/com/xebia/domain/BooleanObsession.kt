@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.domain
+package com.xebia.domain
 
 /**
  * Exercise: Boolean Obsession

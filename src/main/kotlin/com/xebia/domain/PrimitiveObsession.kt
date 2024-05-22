@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.domain
+package com.xebia.domain
 
 /**
  * Primitives are the basis of our type system,
