@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.domain
+package com.xebia.domain
 
 /**
  * Exercise: Boolean Obsession
@@ -20,4 +20,18 @@ data class Employee(
 
 fun Employee.teamNames(): List<String> {
     return team?.map { it.name } ?: emptyList()
+}
+
+sealed interface Person {
+    val name: String
+
+    data class Employee(override val name: String): Person
+    data class Manager(override val name: String, val team: List<Employee>): Person
+}
+
+fun Person.teamNames(): List<String> {
+    return when(this) {
+        is Person.Employee -> emptyList()
+        is Person.Manager -> team.map { it.name }
+    }
 }
