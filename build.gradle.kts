@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.0.0-RC3"
-  id("com.google.devtools.ksp") version "2.0.0-RC3-1.0.20"
-  id("org.jetbrains.kotlin.plugin.power-assert") version "2.0.0-RC3"
+  kotlin("jvm") version "2.0.0"
+  id("com.google.devtools.ksp") version "2.0.0-1.0.21"
+  id("org.jetbrains.kotlin.plugin.power-assert") version "2.0.0"
 }
 
 
