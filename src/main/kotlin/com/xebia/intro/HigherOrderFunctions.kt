@@ -95,7 +95,7 @@ fun List<Song>.generatePlayStats(): PlayStats =
  * to the specified musical genre
  */
 fun Song.belongsToGenreAndReleasedInYear(selectedGenre: Genre, year: Int): Boolean =
-    genre == selectedGenre && releaseDate.year == year //TODO()
+    genre == selectedGenre && releaseDate.year == year
 
 /**
  * Step 2:
@@ -104,7 +104,7 @@ fun Song.belongsToGenreAndReleasedInYear(selectedGenre: Genre, year: Int): Boole
  */
 fun PlayStats.calculateRoyalties(song: Song): Double {
     val playCount = stats[song] // Simulate a call to an external service
-    return playCount?.let { it * song.artist.feePerSongPlayed } ?: 0.0 //TODO()
+    return playCount?.let { it * song.artist.feePerSongPlayed } ?: 0.0
 }
 
 /**

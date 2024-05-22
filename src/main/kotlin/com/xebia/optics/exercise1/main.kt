@@ -1,23 +1,37 @@
 package com.xebia.com.xebia.optics.exercise1
 
-data class Person(val name: String, val address: Address)
-data class Address(val street: Street, val city: City)
-data class Street(val name: String, val number: Int)
-data class City(val name: String, val country: String)
+import arrow.optics.copy
+import arrow.optics.optics
+
+@optics
+data class Person(val name: String, val address: Address) {
+    companion object
+}
+@optics data class Address(val street: Street, val city: City) {
+    companion object
+}
+@optics data class Street(val name: String, val number: Int) {
+    companion object
+}
+@optics data class City(val name: String, val country: String) {
+    companion object
+}
 
 /**
  * Update `this` [Person] with a [newName],
  * using the `copy` method
  */
 fun Person.changeName(newName: String): Person =
-    TODO("Set name to newName")
+    copy {
+        Person.name.set(newName)
+    }
 
 /**
  * Update `this` [Person.address], [Address.street], [Street.number] with a [newNumber],
  * using the `copy` method
  */
 fun Person.fixStreetNumber(newNumber: Int): Person =
-    TODO("Set Person address street number to newNumber")
+    Person.address.street.number.set(this, newNumber)
 
 fun main() {
     val person0 =

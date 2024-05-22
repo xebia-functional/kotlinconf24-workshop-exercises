@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.errors.recovering
+package com.xebia.com.xebia.errors.exercise2
 
 import arrow.core.Either
 import arrow.core.left
@@ -17,8 +17,7 @@ fun left(): Either<MyError, Nothing> =
     either { error() }
 
 fun either(): Either<Nothing, String> =
-    MyError("This either program failed.").left()
-        .recover { "I recovered" }
+    TODO("left()")
 
 fun raise(): String =
-    recover({ error() }) { "I recovered" }
+    TODO("error()")

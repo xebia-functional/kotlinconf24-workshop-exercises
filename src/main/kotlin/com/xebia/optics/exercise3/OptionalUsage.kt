@@ -1,29 +1,22 @@
 package com.xebia.com.xebia.optics.exercise3
 
-import arrow.optics.optics
+import arrow.core.Option
+import arrow.optics.*
+import arrow.optics.dsl.at
+import arrow.optics.dsl.notNull
+import arrow.optics.dsl.some
+import arrow.optics.typeclasses.At
+import kotlinx.serialization.json.JsonPrimitive
 
-@optics
-data class Person(val name: String, val age: Int, val address: Address?) {
+
+@optics sealed interface JsonElement {
     companion object
 }
 
-@optics
-data class Address(val street: Street, val city: City) {
+@optics data class JsObject(val properties: Map<String, JsonElement>): JsonElement {
+    companion object
+}
+@optics data class JsArray(val array: List<JsonElement>): JsonElement {
     companion object
 }
 
-@optics
-data class Street(val name: String, val number: Int?) {
-    companion object
-}
-
-@optics
-data class City(val name: String, val country: String) {
-    companion object
-}
-
-fun Person.removeAddress(): Person =
-    TODO()
-
-fun Person.changeNumber(newNumber: Int): Person =
-    TODO()

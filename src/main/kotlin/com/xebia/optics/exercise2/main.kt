@@ -1,7 +1,6 @@
-package com.xebia.com.xebia.optics.lens
+package com.xebia.com.xebia.optics.exercise2
 
 import arrow.optics.optics
-import com.xebia.com.xebia.optics.exercise1.Person
 
 @optics
 data class Person(val name: String, val address: Address) {
@@ -41,9 +40,9 @@ fun main() {
     val person0 =
         Person(
             "KotlinConf Attendee",
-            com.xebia.com.xebia.optics.exercise1.Address(
-                com.xebia.com.xebia.optics.exercise1.Street("Center Blvd.", 1),
-                com.xebia.com.xebia.optics.exercise1.City("København", "Denmark")
+            Address(
+                Street("Center Blvd.", 1),
+                City("København", "Denmark")
             )
         )
 

@@ -15,7 +15,8 @@ val booleanConversionAsFunctionalValue: (String) -> Boolean? = ::booleanConversi
 /**
  * Implement a functional value to convert [String] values into [Int]. Return null if the [String] is not a valid [Int]
  */
-val intConversionAsFunctionalValue: (String) -> Int? = { value -> value.toIntOrNull() }
+val intConversionAsFunctionalValue: (String) -> Int? =
+    { value -> value.toIntOrNull() }
 
 /**
  * Use the [intConversionAsFunctionalValue] functional value to define a function that converts [String] into [Int]
@@ -44,8 +45,9 @@ fun main() {
 
     assert(convertedIntValuesOptionA == listOf(1, 5, 7))
 
-    assert(convertedIntValuesOptionA == convertedIntValuesOptionB
-            && convertedIntValuesOptionA == convertedIntValuesOptionC
-            && convertedIntValuesOptionA == convertedIntValuesOptionD
+    assert(
+        convertedIntValuesOptionA == convertedIntValuesOptionB
+                && convertedIntValuesOptionA == convertedIntValuesOptionC
+                && convertedIntValuesOptionA == convertedIntValuesOptionD
     )
 }
