@@ -1,4 +1,4 @@
-package com.xebia.com.xebia.domain
+package com.xebia.domain
 
 /**
  * Our Name class cannot be created with a null, or blank String.
